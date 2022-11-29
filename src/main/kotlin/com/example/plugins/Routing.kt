@@ -21,23 +21,39 @@ fun Application.configureRouting() {
 
     routing {
         get("/convert/c_kg/r") {
-            val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?:0.0
-            call.respondText((convert_to_r(c_kg)).toString())
+            try {
+                val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?: call.respondText("Error! Empty parameter")
+                call.respondText(c_kg.toString() + " c/kg = " + (convert_to_r(c_kg as Double)).toString() + " r")
+            } catch (e: NumberFormatException) {
+                call.respondText("Error! Incorrect parameter")
+            }
         }
 
         get("/convert/r/c_kg") {
-            val r = (call.parameters[ROENTGEN])?.toDouble() ?:0.0
-            call.respondText((convert_to_c_kg(r)).toString())
+            try {
+                val r = (call.parameters[ROENTGEN])?.toDouble() ?: call.respondText("Error! Empty parameter")
+                call.respondText(r.toString() + " r = " + (convert_to_c_kg(r as Double)).toString() + " c/kg")
+            } catch (e: NumberFormatException) {
+                call.respondText("Error! Incorrect parameter")
+            }
         }
 
         get("/convert/c_kg/sv") {
-            val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?:0.0
-            call.respondText((convert_to_r(c_kg) / r_in_sv).toString())
+            try {
+                val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?: call.respondText("Error! Empty parameter")
+                call.respondText(c_kg.toString() + " c_kg = " + (convert_to_r(c_kg as Double) / r_in_sv).toString() + " sv")
+            } catch (e: NumberFormatException) {
+                call.respondText("Error! Incorrect parameter")
+            }
         }
 
         get("/convert/sv/r") {
-            val sv = (call.parameters[SIEVERT])?.toDouble() ?:0.0
-            call.respondText((sv * r_in_sv).toString())
+            try {
+                val sv = (call.parameters[SIEVERT])?.toDouble() ?: call.respondText("Error! Empty parameter")
+                call.respondText(sv.toString() + " sv = " + (sv as Double * r_in_sv).toString() + " r")
+            } catch (e: NumberFormatException) {
+                call.respondText("Error! Incorrect parameter")
+            }
         }
     }
 }
