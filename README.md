@@ -29,15 +29,15 @@ $ git clone https://github.com/PolinaRubinova/Software_Engineering_labs.git
 ```
 CD into app folder:
 ``` console
-$ cd converter
+$ cd Software_Engineering_labs
 ```
 Build docker image:
 ``` console
-$ docker build -t CKgtoRConverter
+$ docker build -t Software_Engineering_labs
 ```
 Run docker image:
 ``` console
-$ docker run -p 8080:8080 CKgtoRConverter
+$ docker run -p 8080:8080 Software_Engineering_labs
 ```
 
 ## Lisense
