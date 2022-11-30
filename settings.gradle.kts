@@ -1,0 +1,1 @@
+rootProject.name = "com.example.software_engineering_labs"
