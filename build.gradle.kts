@@ -24,6 +24,9 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
@@ -38,4 +41,11 @@ compileKotlin.kotlinOptions {
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
+}
+
+tasks {
+    // Use the native JUnit support of Gradle.
+    "test"(Test::class) {
+        useJUnitPlatform()
+    }
 }

@@ -22,8 +22,9 @@ fun Application.configureRouting() {
     routing {
         get("/convert/c_kg/r") {
             try {
-                val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?: call.respondText("Error! Empty parameter")
-                call.respondText(c_kg.toString() + " c/kg = " + (convert_to_r(c_kg as Double)).toString() + " r")
+                call.parameters[COULOMB_KILOGRAM]?.toDouble()?.let {
+                    call.respondText(it.toString() + " c/kg = " + (convert_to_r(it)).toString() + " r")
+                } ?: call.respondText("Error! Empty parameter")
             } catch (e: NumberFormatException) {
                 call.respondText("Error! Incorrect parameter")
             }
@@ -31,8 +32,9 @@ fun Application.configureRouting() {
 
         get("/convert/r/c_kg") {
             try {
-                val r = (call.parameters[ROENTGEN])?.toDouble() ?: call.respondText("Error! Empty parameter")
-                call.respondText(r.toString() + " r = " + (convert_to_c_kg(r as Double)).toString() + " c/kg")
+                call.parameters[ROENTGEN]?.toDouble()?.let {
+                    call.respondText(it.toString() + " r = " + (convert_to_c_kg(it)).toString() + " c/kg")
+                } ?: call.respondText("Error! Empty parameter")
             } catch (e: NumberFormatException) {
                 call.respondText("Error! Incorrect parameter")
             }
@@ -40,8 +42,9 @@ fun Application.configureRouting() {
 
         get("/convert/c_kg/sv") {
             try {
-                val c_kg = (call.parameters[COULOMB_KILOGRAM])?.toDouble() ?: call.respondText("Error! Empty parameter")
-                call.respondText(c_kg.toString() + " c_kg = " + (convert_to_r(c_kg as Double) / r_in_sv).toString() + " sv")
+                call.parameters[COULOMB_KILOGRAM]?.toDouble()?.let {
+                    call.respondText(it.toString() + " c_kg = " + (convert_to_r(it) / r_in_sv).toString() + " sv")
+                }?: call.respondText("Error! Empty parameter")
             } catch (e: NumberFormatException) {
                 call.respondText("Error! Incorrect parameter")
             }
@@ -49,8 +52,9 @@ fun Application.configureRouting() {
 
         get("/convert/sv/r") {
             try {
-                val sv = (call.parameters[SIEVERT])?.toDouble() ?: call.respondText("Error! Empty parameter")
-                call.respondText(sv.toString() + " sv = " + (sv as Double * r_in_sv).toString() + " r")
+                call.parameters[SIEVERT]?.toDouble()?.let {
+                    call.respondText(it.toString() + " sv = " + (it * r_in_sv).toString() + " r")
+                }?: call.respondText("Error! Empty parameter")
             } catch (e: NumberFormatException) {
                 call.respondText("Error! Incorrect parameter")
             }
