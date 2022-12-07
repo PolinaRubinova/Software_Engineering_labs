@@ -1,6 +1,13 @@
 # Software_Engineering_labs
 ## Coulomb per kilogram to roentgen converter
 
+# Converter Service
+(Master
+[![Tests](https://github.com/PolinaRubinova/Software_Engineering_labs/actions/workflows/gradle-tests.yml/badge.svg?branch=master)](https://github.com/PolinaRubinova/Software_Engineering_labs/actions/workflows/gradle-tests.yml) )
+
+(Develop
+[![Tests](https://github.com/PolinaRubinova/Software_Engineering_labs/actions/workflows/gradle-tests.yml/badge.svg?branch=develop)](https://github.com/PolinaRubinova/Software_Engineering_labs/actions/workflows/gradle-tests.yml) )
+
 Converter that can convert coulomb/kilogram [C/kg] to roentgen [R], roentgen [R] to coulomb/kilogram [C/kg], coulomb/kilogram [C/kg] to sievert [Sv] and sievert [Sv] to roentgen [R].
 
 ## How to use
